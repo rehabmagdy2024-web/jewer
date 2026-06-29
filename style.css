@@ -1,0 +1,536 @@
+ /* ==========================================================================
+   1. الإعدادات الأساسية والألوان (Reset & Variables)
+   ========================================================================== */
+* {
+     overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth; /* الانتقال الناعم بين الأقسام - البونص */
+}
+
+:root {
+    --bg-dark: #0b0c10;       
+    --bg-card: #1f2833;       
+    --gold: #d4af37;          
+    --gold-hover: #f3e5ab;    
+    --text-light: #ffffff;    
+    --text-muted: #c5a880;    
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.container {
+    width: 85%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 0;
+}
+
+/* ==========================================================================
+   2. القائمة العلوية الثابتة (Sticky Navbar)
+   ========================================================================== */
+.navbar-header {
+    background-color: rgba(11, 12, 16, 0.95);
+    position: fixed; /* تثبيت القائمة في الأعلى - البونص */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--gold);
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease; /* تأثير ناعم */
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+/* زر الموبايل الافتراضي (مخفي في الديسكتوب) */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--gold);
+    transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   3. (Hero Section)
+   ========================================================================== */
+.hero {
+    height: 100vh;
+    /* يمكنكِ وضع رابط صورة حقيقية هنا لموديل ترتدي مجوهرات */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+
+
+.hero-content {
+    animation: fadeIn 1.5s ease-in-out; /* أنيميشن البونص */
+}
+
+.hero-title {
+    font-size: 48px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    margin-bottom: 40px;
+    color: var(--text-light);
+}
+
+.btn-cta {
+    display: inline-block;
+    padding: 12px 35px;
+    background-color: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: all 0.4s ease; /* تأثير ناعم للـ Hover */
+}
+
+.btn-cta:hover {
+    background-color: var(--gold);
+    color: var(--bg-dark);
+    box-shadow: 0 0 15px var(--gold);
+}
+
+/* ==========================================================================
+   4. (About Section - Flexbox)
+   ========================================================================== */
+.about-grid {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text h2 {
+    color: var(--gold);
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    color: #a0a0a0;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.about-image {
+    flex: 1;
+    text-align: center;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    border: 2px solid var(--gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* ==========================================================================
+   5.  (Collections - Grid)
+   ========================================================================== */
+.section-title {
+    text-align: center;
+    color: var(--gold);
+    font-size: 36px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+/* خط تزييني ذهبي أسفل العنوان */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: var(--gold);
+    margin: 10px auto 0;
+}
+
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 أعمدة في الديسكتوب */
+    gap: 30px;
+}
+
+.collection-card {
+    background-color: var(--bg-card);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.collection-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.collection-card h3 {
+    color: var(--gold);
+    margin: 15px 0 10px;
+    font-size: 22px;
+}
+
+.collection-card p {
+    padding: 0 15px;
+    font-size: 14px;
+    color: #b0b0b0;
+    margin-bottom: 15px;
+}
+
+.card-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+/* تأثير الـ Hover على الكروت */
+.collection-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+}
+
+.collection-card:hover .card-link {
+    color: var(--gold);
+}
+
+/* ==========================================================================
+   6. قسم المعرض مع تأثير الـ Hover والـ Overlay (Gallery)
+   ========================================================================== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 صور بجانب بعضها */
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    height: 300px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease; /* لتكبير الصورة بنعومة */
+}
+
+/* الطبقة الشفافة التي تظهر فوق الصورة عند الـ Hover */
+.gallery-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 12, 16, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* مخفية افتراضياً */
+    transition: opacity 0.4s ease;
+}
+
+.gallery-item .overlay span {
+    color: var(--gold);
+    font-size: 20px;
+    font-weight: bold;
+    border: 1px solid var(--gold);
+    padding: 8px 20px;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+/* تشغيل تأثير الـ Hover للمعرض */
+.gallery-item:hover img {
+    transform: scale(1.1); /* تكبير الصورة */
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1; /* إظهار الطبقة الشفافة */
+}
+
+.gallery-item:hover .overlay span {
+    transform: translateY(0); /* رفع النص ببطء لأعلى */
+}
+
+/* ==========================================================================
+   7.نموذج الاتصال  (Contact Form)
+   ========================================================================== */
+.contact-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--bg-card);
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--gold);
+    font-weight: 500;
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--bg-dark);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: white;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    border-color: var(--gold); /* تفتيح الإطار عند الكتابة */
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: none;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--gold);
+    color: var(--bg-dark);
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--gold-hover);
+}
+
+/* ==========================================================================
+   8. التذييل (Footer)
+   ========================================================================== */
+.main-footer {
+    background-color: #050507;
+    padding: 40px 0 20px;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    padding-bottom: 30px;
+}
+
+.footer-section {
+    flex: 1;
+}
+
+.footer-section .logo {
+    font-size: 22px;
+    color: var(--gold);
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.social-icons a {
+    color: var(--gold);
+    font-size: 20px;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--text-light);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* ==========================================================================
+   9. حركات الأنيميشن (Keyframes Bonus)
+   ========================================================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   10. قواعد التجاوب (Media Queries - الشاشات المتعددة)
+   ========================================================================== */
+
+/* أ) شاشات التابلت (Tablet ≤ 1024px) -> تحويل التقسيمات إلى عمودين */
+@media (max-width: 1024px) {
+    .collections-grid {
+        grid-template-columns: repeat(2, 1fr); /* كارتين بجانب بعضهما */
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* صورتين بجانب بعضهما */
+    }
+}
+
+/* ب) شاشات الهواتف (Mobile ≤ 768px) -> عمود واحد بالكامل وترتيب رأسي */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 40px 0;
+    }
+
+    /* تحويل القائمة العلوية لتناسب الموبايل بشكل بسيط ونظيف */
+    .nav-links {
+        display: none; /* إخفاء القائمة في الموبايل أو يمكن تركها تترتب رأسياً */
+        /* ملاحظة: لتبسيط المشروع بدون جافا سكريبت، سنرتب الروابط تحت بعضها عند فتحها بالـ CSS */
+    }
+    
+    /* جعل روابط التنقل تنساب عمودياً إذا أردتِ إظهارها */
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    /* تحويل قسم About لعمود واحد (تحت بعض) */
+    .about-grid {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* تحويل الكروت لمعمود واحد تحت بعض */
+    .collections-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* تحويل معرض الصور لعمود واحد تحت بعض */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* تحويل التذييل لعمود واحد */
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .hero-title {
+        font-size: 32px;
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
+    }
+}
